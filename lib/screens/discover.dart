@@ -7,6 +7,7 @@ import 'package:pandemonium/model/station_response.dart';
 import 'package:pandemonium/services/radio_service.dart';
 import 'package:pandemonium/utils/custom_fonts.dart';
 import 'package:pandemonium/utils/radio_list_builder.dart';
+import 'package:plotline_engage/plotline.dart';
 import 'package:provider/provider.dart';
 
 import 'categories_widget.dart';
@@ -25,6 +26,9 @@ class _DiscoverState extends State<Discover> {
   void initState() {
     RadioService.dnsLookup();
     popularRadiosList = fetchPopularRadios();
+    Plotline.init("MWIxY2JmMjMtNWU1ZS00OTUxLTk1MmYtMTU5YmQ1MTU5YzE5", "raman-devel", "https://staging.plotline.so");
+    Plotline.shouldEnableDebug = true;
+    Plotline.track("testcase_event");
     super.initState();
   }
 

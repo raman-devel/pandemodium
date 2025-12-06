@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pandemonium/model/radio_data.dart';
 import 'package:pandemonium/model/station_data.dart';
+import 'package:plotline_engage/observer.dart';
+import 'package:plotline_engage/plotline.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/discover.dart';
@@ -22,10 +24,13 @@ final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     ShellRoute(
         navigatorKey: _shellNavigatorKey,
+        observers: [PlotlineNavigationObserver()],
         builder: (context, state, child) {
           print(state.matchedLocation);
-          return ScaffoldBottomSheetAndNavBar(
-            child: child,
+          return PlotlineWrapper(
+            child: ScaffoldBottomSheetAndNavBar(
+              child: child,
+            ),
           );
         },
         routes: [
